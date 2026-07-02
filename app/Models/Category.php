@@ -20,6 +20,9 @@ class Category extends Model
     }
     public function getImageUrlAttribute()
     {
+        if (empty($this->images) || !is_array($this->images)) {
+            return [asset('images/default-product.png')];
+        }
         if ($this->image && file_exists(public_path($this->image))) {
             return asset($this->image);
         }
