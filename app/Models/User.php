@@ -11,8 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+#[Fillable(['name', 'phone'])]
+#[Hidden(['remember_token'])]
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -31,15 +31,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function province(): BelongsTo
-    {
-        return $this->belongsTo(Province::class);
-    }
-
-    public function city(): BelongsTo
-    {
-        return $this->belongsTo(City::class);
-    }
+//    public function province(): BelongsTo
+//    {
+//        return $this->belongsTo(Province::class);
+//    }
+//
+//    public function city(): BelongsTo
+//    {
+//        return $this->belongsTo(City::class);
+//    }
 
     /** @use HasFactory<UserFactory> */
 
