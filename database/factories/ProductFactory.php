@@ -21,7 +21,7 @@ class ProductFactory extends Factory
         return [
             'category_id' => fake()->numberBetween(1,10),
             'name' => $name,
-            'image' => $this->faker->imageUrl(),
+            'images' => [$this->faker->imageUrl()],
             'slug' => $name,
             'description' => fake()->text(),
             'price' => fake()->numberBetween(100000, 1000000),

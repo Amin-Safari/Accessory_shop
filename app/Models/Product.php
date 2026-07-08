@@ -18,6 +18,7 @@ class Product extends Model
         'images' => 'array',
     ];
 
+    protected $appends = ['image_url'];
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
