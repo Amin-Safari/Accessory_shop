@@ -15,7 +15,7 @@
                     @if($product->price > 0 && $product->discount > 0)
                         <div class="absolute top-6 left-6">
                             <div class="badge badge-error gap-1">
-                                {{ number_format((($product->price - $product->total) / $product->price) * 100) }}٪
+                                {{ number_format($product->discount) }}٪
                             </div>
                         </div>
                     @endif
@@ -39,6 +39,10 @@
                             <span class="text-sm line-through opacity-50">
                             {{ number_format($product->price) }}
                             </span>
+                        @else
+                            <span class="text-xl font-bold text-primary">
+                            {{ number_format($product->price) }}تومان
+                        </span>
                         @endif
                     </div>
                 </div>

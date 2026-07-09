@@ -23,6 +23,13 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function getFinalPriceAttribute(): float
+    {
+        if ($this->discount){
+            return $this->price * (1-($this->discount *0.01));
+        }
+        return $this->price;
+    }
 
     public function getImageUrlAttribute(): string
     {
@@ -83,5 +90,50 @@ class Product extends Model
         })->filter()->values()->toArray();
     }
 
-
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            return $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+        return $query;
+    }
+    public function scopeByCategory($query, $categoryId)
+    {
+        if ($categoryId) {
+            return $query->where('category_id', $categoryId);
+        }
+        return $query;
+    }
+    public function scopeByPriceRange($query, $minPrice, $maxPrice)
+    {
+        if ($minPrice !== null && $maxPrice !== null) {
+            return $query->whereBetween('price', [$minPrice, $maxPrice]);
+        }
+        return $query;
+    }
+    public function scopeInStock($query)
+    {
+        return $query->where('total', '>', 0);
+    }
+    public function scopeSortBy($query, $sort)
+    {
+        return match ($sort) {
+            'newest' => $query->latest(),
+            'oldest' => $query->oldest(),
+            'cheapest' => $query->orderBy('price', 'asc'),
+            'expensive' => $query->orderBy('price', 'desc'),
+            'bestselling' => $query->orderBy('sold_count', 'desc'),
+            'most_viewed' => $query->orderBy('views', 'desc'),
+            'discounted' => $query->whereNotNull('discount')
+                ->orderBy('discount', 'desc'),
+            default => $query->latest(),
+        };
+    }
 }

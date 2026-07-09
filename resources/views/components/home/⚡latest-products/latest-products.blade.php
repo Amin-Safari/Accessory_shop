@@ -37,7 +37,6 @@
                             {{ number_format($product->price) }}
                             </span>
                         @else
-1
                             <span class="text-lg font-bold text-primary">
                         {{ number_format($product->price) }} تومان
                     </span>

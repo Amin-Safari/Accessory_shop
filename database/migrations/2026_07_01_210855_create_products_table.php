@@ -23,8 +23,17 @@ return new class extends Migration
             $table->decimal('total');
             $table->boolean('is_new');
             $table->boolean('is_active');
+            $table->unsignedInteger('views')->default(0);
+            $table->unsignedInteger('sold_count')->default(0);
             $table->timestamps();
+
+
+            $table->index(['category_id', 'is_active']);
+            $table->index('price');
+            $table->index('sold_count');
+            $table->index('views');
         });
+
     }
 
     /**

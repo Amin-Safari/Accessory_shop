@@ -28,4 +28,9 @@ class Category extends Model
         }
         return asset('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvW2jXorDcuGUNTFpAegqf0X6FfCi7FLF4WpZ4oyrwqA&s=10');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

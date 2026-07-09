@@ -88,7 +88,7 @@
 
                 </li>
 
-                <li><a>محصولات</a></li>
+                <li><a href="{{ route('products') }}">محصولات</a></li>
 
                 <li><a>وبلاگ</a></li>
 
