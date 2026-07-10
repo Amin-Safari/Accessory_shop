@@ -12,22 +12,22 @@ class Products extends Component
 {
     use WithPagination;
 
-    #[Url(history: true, keep: true)]
+    #[Url(history: true)]
     public $search = '';
 
-    #[Url(history: true, keep: true)]
+    #[Url(history: true)]
     public $category = '';
 
-    #[Url(history: true, keep: true)]
+    #[Url(history: true)]
     public $min_price = '';
 
-    #[Url(history: true, keep: true)]
+    #[Url(history: true)]
     public $max_price = '';
 
-    #[Url(history: true, keep: true)]
+    #[Url(history: true)]
     public $sort = 'newest';
 
-    #[Url(history: true, keep: true)]
+    #[Url(history: true)]
     public $in_stock = false;
 
     public function updatedSearch()
