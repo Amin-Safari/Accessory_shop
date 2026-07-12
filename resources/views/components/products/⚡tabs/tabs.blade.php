@@ -27,7 +27,7 @@
         @if($activeTab === 'description')
             <div class="prose max-w-none">
                 @if($product->description)
-                    <p class="text-gray-700 leading-relaxed">{{ $product->description }}</p>
+                    <p class="text-gray-500 leading-relaxed">{{ $product->description }}</p>
                 @else
                     <div class="text-center py-8 text-gray-500">
                         <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">

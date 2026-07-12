@@ -1,18 +1,19 @@
 <?php
 
 use Livewire\Component;
+use Livewire\Attributes\On;
 
-new class extends Component
-{
+new class extends Component {
     public array $items = [];
-
     public function mount(): void
     {
         $this->loadCart();
     }
 
+    #[On('cart-updated')]
     public function loadCart(): void
     {
+
         $this->items = session('cart', []);
     }
 
@@ -24,7 +25,7 @@ new class extends Component
     public function getTotalProperty(): int
     {
         return collect($this->items)
-            ->sum(fn ($item) => $item['qty'] * $item['price']);
+            ->sum(fn($item) => $item['qty'] * ($item['price'] * (1 - (0.01 * $item['discount']))));
     }
 
     public function remove($id): void

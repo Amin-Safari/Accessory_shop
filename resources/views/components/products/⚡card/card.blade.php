@@ -1,7 +1,11 @@
 <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 group">
     <!-- تصویر محصول -->
     <figure class="relative px-4 pt-4 overflow-hidden">
-        <a href="#" class="block">
+        <a href="{{ route('products.show',[
+    'product_slug' => $product->slug,
+    'category_slug' => $product->category?->slug
+]) }}"
+           class="block">
             <img
                 src="{{ $product->image_url }}"
                 alt="{{ $product->name }}"
@@ -27,7 +31,10 @@
     <!-- اطلاعات محصول -->
     <div class="card-body p-4">
         <!-- نام محصول -->
-        <a href="#" class="block">
+        <a href="{{ route('products.show',[
+    'product_slug' => $product->slug,
+    'category_slug' => $product->category?->slug
+]) }}" class="block">
             <h3 class="card-title text-lg font-semibold hover:text-primary transition line-clamp-2">
                 {{ $product->name }}
             </h3>
@@ -81,7 +88,7 @@
             @if($product->total > 0)
                 <button
                     class="btn btn-primary flex-1"
-                    wire:click="addToCart"
+                    wire:click="addToCart({{ $product->id }})"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
@@ -93,7 +100,10 @@
             @endif
 
             <a
-                href="#"
+                href="{{ route('products.show',[
+    'product_slug' => $product->slug,
+    'category_slug' => $product->category?->slug
+]) }}"
                 class="btn btn-outline btn-sm"
             >
                 جزئیات

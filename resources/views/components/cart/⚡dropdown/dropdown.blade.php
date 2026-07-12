@@ -80,7 +80,7 @@
 
                             <p class="text-sm opacity-60 mt-1">
 
-                                {{ number_format($item['price']) }} تومان
+                                {{ number_format($item['price'] * (1-( 0.01 * $item['discount']))) }} تومان
 
                             </p>
 
@@ -129,7 +129,7 @@
                 <div class="grid grid-cols-2 gap-2">
 
                     <a
-                        href="{{ route('cart') }}"
+                        href="#"
                         class="btn btn-outline">
 
                         مشاهده سبد
@@ -137,7 +137,7 @@
                     </a>
 
                     <a
-                        href="{{ route('checkout') }}"
+                        href="#"
                         class="btn btn-primary">
 
                         تسویه حساب

@@ -14,7 +14,7 @@
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         @foreach($products as $relatedProduct)
-            <a href="{{ route('products.show', $relatedProduct->slug) }}"
+            <a href="{{ route('products.show', ['product_slug' => $relatedProduct->slug, 'category_slug' => $relatedProduct->category?->slug]) }}"
                class="group bg-base-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
 
                 <div class="aspect-square overflow-hidden">
@@ -24,7 +24,7 @@
                          loading="lazy">
 
                     @if($relatedProduct->discount > 0)
-                        <div class="absolute top-2 right-2">
+                        <div class="absolu1te top-2 right-2">
                             <div class="badge badge-error text-white border-0 text-xs">
                                 {{ $relatedProduct->discount }}%
                             </div>

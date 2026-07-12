@@ -184,4 +184,3 @@ new class extends Component {
         $this->resetValidation();
     }
 };
-?>

@@ -10,10 +10,10 @@ class ProductShow extends Component
     public $product;
     public int $quantity = 1;
 
-    public function mount($slug)
+    public function mount($product_slug,$category_slug)
     {
         $this->product = Product::query()
-            ->where('slug', $slug)
+            ->where('slug', $product_slug)
             ->with('category')
             ->firstOrFail();
 //        dd($this->product);

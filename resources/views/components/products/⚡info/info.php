@@ -4,18 +4,17 @@
 use Livewire\Component;
 use App\Models\Product;
 
-new class extends Component
-{
+new class extends Component {
     public Product $product;
     public int $quantity = 1;
 
-    public function mount(Product $product, int $quantity)
+    public function mount(Product $product, int $quantity): void
     {
         $this->product = $product;
         $this->quantity = $quantity;
     }
 
-    public function increment()
+    public function increment(): void
     {
         if ($this->quantity < $this->product->total) {
             $this->quantity++;
@@ -23,7 +22,7 @@ new class extends Component
         }
     }
 
-    public function decrement()
+    public function decrement(): void
     {
         if ($this->quantity > 1) {
             $this->quantity--;
@@ -31,23 +30,43 @@ new class extends Component
         }
     }
 
-    public function addToCart()
+    public function addToCart(int $productId): void
     {
-        $this->dispatch('add-to-cart', [
-            'product_id' => $this->product->id,
-            'quantity' => $this->quantity,
-            'name' => $this->product->name,
-            'price' => $this->product->final_price,
-            'image' => $this->product->image_url,
-        ]);
+        $product = Product::query()
+            ->findOrFail($productId);
 
-        $this->dispatch('notify', [
-            'type' => 'success',
-            'message' => 'محصول با موفقیت به سبد خرید اضافه شد'
-        ]);
+        $cart = session('cart', []);
+        if ($product->total && $product->is_active) {
+
+            $cart[$product->id] = [
+
+                'id' => $product->id,
+
+                'title' => $product->name,
+
+                'price' => $product->price,
+
+                'discount' => $product->discount,
+
+                'image' => $product->image_url,
+
+                'qty' => $this->quantity,
+
+            ];
+
+            session()->put('cart', $cart);
+
+            $this->dispatch('cart-updated');
+
+            $this->dispatch('notify', [
+                'type' => 'success',
+                'message' => 'محصول به سبد خرید اضافه شد.'
+            ]);
+        }
     }
 
-    public function addToWishlist()
+
+    public function addToWishlist(): void
     {
         $this->dispatch('add-to-wishlist', [
             'product_id' => $this->product->id,
@@ -60,7 +79,7 @@ new class extends Component
         ]);
     }
 
-    public function shareProduct()
+    public function shareProduct(): void
     {
         $this->dispatch('share', [
             'url' => route('products.show', $this->product->slug),

@@ -23,7 +23,7 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function getFinalPriceAttribute(): float
+    public function getFinalPriceAttribute(): int
     {
         if ($this->discount){
             return $this->price * (1-($this->discount *0.01));

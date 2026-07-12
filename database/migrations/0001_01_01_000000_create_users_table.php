@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->text('address')->nullable();
             $table->integer('city_id')->nullable();
             $table->integer('province_id')->nullable();
+            $table->string('postal_code');
             $table->rememberToken();
             $table->timestamps();
         });

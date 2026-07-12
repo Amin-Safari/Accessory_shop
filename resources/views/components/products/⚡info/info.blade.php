@@ -93,7 +93,7 @@
 
         <!-- دکمه‌های عملیات -->
         <div class="space-y-3">
-            <button wire:click="addToCart"
+            <button wire:click="addToCart({{ $product->id }})"
                     class="btn btn-primary w-full gap-2 text-lg h-14"
                     wire:loading.attr="disabled"
                     wire:target="addToCart">

@@ -34,6 +34,7 @@ class UserFactory extends Factory
             'address'=> fake()->address(),
             'city_id'=>fake()->numberBetween(1,50),
             'province_id'=>fake()->numberBetween(1,10),
+            'postal_code'=>fake()->postcode(),
         ];
     }
 
