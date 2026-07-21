@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'payment_gateway' => env('APP_PAYMENT_GATEWAY', 'zarinpal'),
 ];

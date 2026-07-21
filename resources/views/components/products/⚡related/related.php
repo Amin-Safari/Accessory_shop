@@ -8,6 +8,6 @@ new class extends Component
 
     public function mount($products = [])
     {
-        $this->products = $products;
+        $this->products = $products->take(8);
     }
 };
