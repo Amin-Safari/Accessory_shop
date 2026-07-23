@@ -8,9 +8,9 @@
     @livewireStyles
 </head>
 <body>
-@livewire('layout.header')
+@livewire('layout.main.header')
 {{ $slot }}
-@livewire('layout.footer')
+@livewire('layout.main.footer')
 @livewireScripts
 </body>
 </html>

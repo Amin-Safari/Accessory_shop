@@ -59,11 +59,11 @@
 
                 <div class="navbar-end gap-2">
 
-                    @livewire('layout.theme-switcher')
+                    @livewire('layout.main.theme-switcher')
 
-                    @livewire('cart.dropdown')
+                    @livewire('layout.main.dropdown')
 
-                    @livewire('user.menu')
+                    @livewire('layout.main.menu')
 
                 </div>
 
@@ -101,7 +101,7 @@
 
 
                 <li>
-                    @livewire('user.menu')
+                    @livewire('layout.main.menu')
                 </li>
 
 
@@ -109,6 +109,6 @@
 
         </div>
     </div>
-    @livewire('auth.modal')
+    @livewire('layout.main.modal')
 
 </div>
